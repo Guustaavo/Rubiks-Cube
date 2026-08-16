@@ -1,0 +1,93 @@
+import leia from 'readline-sync';
+
+const cube = {
+    up: [
+        ["W", "W", "W"],
+        ["W", "W", "W"],
+        ["W", "W", "W"]
+    ],
+
+    front: [
+        ["G", "G", "G"],
+        ["G", "G", "G"],
+        ["G", "G", "G"]
+    ],
+
+    down: [
+        ["Y", "Y", "Y"],
+        ["Y", "Y", "Y"],
+        ["Y", "Y", "Y"]
+    ],
+
+    left: [
+        ["O", "O", "O"],
+        ["O", "O", "O"],
+        ["O", "O", "O"]
+    ],
+
+    right: [
+        ["R", "R", "R"],
+        ["R", "R", "R"],
+        ["R", "R", "R"]
+    ],
+
+    back: [
+        ["B", "B", "B"],
+        ["B", "B", "B"],
+        ["B", "B", "B"]
+    ],
+}
+
+function desenhar() {
+    console.clear();
+    console.log("  " + cube.up[0].join('') +
+        "\n  " + cube.up[1].join('') +
+        "\n  " + cube.up[2].join(''));
+
+    for (var i = 0; i < 3; i++) {
+        console.log(cube.left[i].join('') + " " + cube.front[i].join('') + " " + cube.right[i].join('') + " " + cube.back[i].join(''));
+    }
+
+    console.log("  " + cube.down[0].join('') +
+        "\n  " + cube.down[1].join('') +
+        "\n  " + cube.down[2].join(''));
+
+    console.log("\nEscolha o movimento que você deseja fazer:");
+}
+
+function girarF() {
+    var temp0 = cube.up[2][0]
+    var temp1 = cube.up[2][1]
+    var temp2 = cube.up[2][2]
+
+    cube.up[2][0] = cube.left[2][2]; cube.up[2][1] = cube.left[1][2]; cube.up[2][2] = cube.left[0][2];
+    cube.left[0][2] = cube.down[0][0]; cube.left[1][2] = cube.down[0][1]; cube.left[2][2] = cube.down[0][2];
+    cube.down[0][0] = cube.right[2][0]; cube.down[0][1] = cube.right[1][0]; cube.down[0][2] = cube.right[0][0];
+    cube.right[0][0] = temp0; cube.right[1][0] = temp1; cube.right[2][0] = temp2;
+}
+
+function girarFInvertido() {
+    var temp0 = cube.up[2][0]
+    var temp1 = cube.up[2][1]
+    var temp2 = cube.up[2][2]
+
+    cube.up[2][0] = cube.right[0][0]; cube.up[2][1] = cube.right[1][0]; cube.up[2][2] = cube.right[2][0];
+    cube.right[0][0] = cube.down[0][2]; cube.right[1][0] = cube.down[0][1]; cube.right[2][0] = cube.down[0][0];
+    cube.down[0][0] = cube.left[0][2]; cube.down[0][1] = cube.left[2][2]; cube.down[0][2] = cube.left[2][2];
+    cube.left[0][2] = temp2; cube.left[1][2] = temp1; cube.left[2][2] = temp0;
+}
+
+function jogo() {
+    desenhar();
+    var movimento = leia.keyInSelect(["F", "F'"])
+    if(movimento === 0){
+        girarF();
+        jogo();
+    }
+    else if(movimento === 1){
+        girarFInvertido();
+        jogo();
+    }
+}
+
+jogo();
