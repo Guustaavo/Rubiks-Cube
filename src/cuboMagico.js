@@ -55,7 +55,37 @@ function desenhar() {
     console.log("\nEscolha o movimento que você deseja fazer:");
 }
 
+function rotacionarFaceHorario(face) {
+    var temp = face[0][0];
+    face[0][0] = face[2][0];
+    face[2][0] = face[2][2];
+    face[2][2] = face[0][2];
+    face[0][2] = temp;
+
+    temp = face[0][1];
+    face[0][1] = face[1][0];
+    face[1][0] = face[2][1];
+    face[2][1] = face[1][2];
+    face[1][2] = temp;
+}
+
+function rotacionarFaceAntiHorario(face) {
+    var temp = face[0][0];
+    face[0][0] = face[0][2];
+    face[0][2] = face[2][2];
+    face[2][2] = face[2][0];
+    face[2][0] = temp;
+
+    temp = face[0][1];
+    face[0][1] = face[1][2];
+    face[1][2] = face[2][1];
+    face[2][1] = face[1][0];
+    face[1][0] = temp;
+}
+
 function girarF() {
+    rotacionarFaceHorario(cube.front);
+
     var temp0 = cube.up[2][0];
     var temp1 = cube.up[2][1];
     var temp2 = cube.up[2][2];
@@ -67,6 +97,8 @@ function girarF() {
 }
 
 function girarFInvertido() {
+    rotacionarFaceAntiHorario(cube.front);
+
     var temp0 = cube.up[2][0];
     var temp1 = cube.up[2][1];
     var temp2 = cube.up[2][2];
@@ -78,6 +110,8 @@ function girarFInvertido() {
 }
 
 function girarR() {
+    rotacionarFaceHorario(cube.right);
+
     var temp0 = cube.up[2][2];
     var temp1 = cube.up[1][2];
     var temp2 = cube.up[0][2];
@@ -89,6 +123,8 @@ function girarR() {
 }
 
 function girarRInvertido() {
+    rotacionarFaceAntiHorario(cube.right);
+
     var temp0 = cube.up[2][2];
     var temp1 = cube.up[1][2];
     var temp2 = cube.up[0][2];
@@ -100,6 +136,8 @@ function girarRInvertido() {
 }
 
 function girarL() {
+    rotacionarFaceHorario(cube.left);
+
     var temp0 = cube.up[0][0];
     var temp1 = cube.up[1][0];
     var temp2 = cube.up[2][0];
@@ -110,7 +148,10 @@ function girarL() {
     cube.front[0][0] = temp0; cube.front[1][0] = temp1; cube.front[2][0] = temp2;
 }
 
+
 function girarLInvertido() {
+    rotacionarFaceAntiHorario(cube.left);
+
     var temp0 = cube.up[0][0];
     var temp1 = cube.up[1][0];
     var temp2 = cube.up[2][0];
@@ -122,6 +163,8 @@ function girarLInvertido() {
 }
 
 function girarU() {
+    rotacionarFaceHorario(cube.up);
+
     var temp0 = cube.front[0][0];
     var temp1 = cube.front[0][1];
     var temp2 = cube.front[0][2];
@@ -133,6 +176,8 @@ function girarU() {
 }
 
 function girarUInvertido() {
+    rotacionarFaceAntiHorario(cube.up);
+
     var temp0 = cube.front[0][0];
     var temp1 = cube.front[0][1];
     var temp2 = cube.front[0][2];
@@ -144,6 +189,8 @@ function girarUInvertido() {
 }
 
 function girarD() {
+    rotacionarFaceHorario(cube.down);
+
     var temp0 = cube.front[2][0];
     var temp1 = cube.front[2][1];
     var temp2 = cube.front[2][2];
@@ -155,6 +202,8 @@ function girarD() {
 }
 
 function girarDInvertido() {
+    rotacionarFaceAntiHorario(cube.down);
+
     var temp0 = cube.front[2][0];
     var temp1 = cube.front[2][1];
     var temp2 = cube.front[2][2];
@@ -166,6 +215,8 @@ function girarDInvertido() {
 }
 
 function girarB() {
+    rotacionarFaceHorario(cube.back);
+
     var temp0 = cube.up[0][0];
     var temp1 = cube.up[0][1];
     var temp2 = cube.up[0][2];
@@ -177,6 +228,8 @@ function girarB() {
 }
 
 function girarBInvertido() {
+    rotacionarFaceAntiHorario(cube.back);
+
     var temp0 = cube.up[0][0];
     var temp1 = cube.up[0][1];
     var temp2 = cube.up[0][2];
@@ -186,6 +239,7 @@ function girarBInvertido() {
     cube.down[2][2] = cube.right[0][2]; cube.down[2][1] = cube.right[1][2]; cube.down[2][0] = cube.right[2][2];
     cube.right[0][2] = temp0; cube.right[1][2] = temp1; cube.right[2][2] = temp2;
 }
+
 
 function jogo() {
     desenhar();
