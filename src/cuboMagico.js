@@ -2,39 +2,39 @@ import leia from 'readline-sync';
 
 const cube = {
     up: [
-        ["W", "W", "W"],
-        ["W", "W", "W"],
-        ["W", "W", "W"]
+        ["⬜", "⬜", "⬜"],
+        ["⬜", "⬜", "⬜"],
+        ["⬜", "⬜", "⬜"]
     ],
 
     front: [
-        ["G", "G", "G"],
-        ["G", "G", "G"],
-        ["G", "G", "G"]
+        ["🟩", "🟩", "🟩"],
+        ["🟩", "🟩", "🟩"],
+        ["🟩", "🟩", "🟩"]
     ],
 
     down: [
-        ["Y", "Y", "Y"],
-        ["Y", "Y", "Y"],
-        ["Y", "Y", "Y"]
+        ["🟨", "🟨", "🟨"],
+        ["🟨", "🟨", "🟨"],
+        ["🟨", "🟨", "🟨"]
     ],
 
     left: [
-        ["O", "O", "O"],
-        ["O", "O", "O"],
-        ["O", "O", "O"]
+        ["🟧", "🟧", "🟧"],
+        ["🟧", "🟧", "🟧"],
+        ["🟧", "🟧", "🟧"]
     ],
 
     right: [
-        ["R", "R", "R"],
-        ["R", "R", "R"],
-        ["R", "R", "R"]
+        ["🟥", "🟥", "🟥"],
+        ["🟥", "🟥", "🟥"],
+        ["🟥", "🟥", "🟥"]
     ],
 
     back: [
-        ["B", "B", "B"],
-        ["B", "B", "B"],
-        ["B", "B", "B"]
+        ["🟦", "🟦", "🟦"],
+        ["🟦", "🟦", "🟦"],
+        ["🟦", "🟦", "🟦"]
     ],
 }
 
@@ -80,11 +80,11 @@ function girarFInvertido() {
 function jogo() {
     desenhar();
     var movimento = leia.keyInSelect(["F", "F'"])
-    if(movimento === 0){
+    if (movimento === 0) {
         girarF();
         jogo();
     }
-    else if(movimento === 1){
+    else if (movimento === 1) {
         girarFInvertido();
         jogo();
     }
