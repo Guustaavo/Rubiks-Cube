@@ -121,9 +121,75 @@ function girarLInvertido() {
     cube.back[0][2] = temp2; cube.back[1][2] = temp1; cube.back[2][2] = temp0;
 }
 
+function girarU() {
+    var temp0 = cube.front[0][0];
+    var temp1 = cube.front[0][1];
+    var temp2 = cube.front[0][2];
+
+    cube.front[0][0] = cube.right[0][0]; cube.front[0][1] = cube.right[0][1]; cube.front[0][2] = cube.right[0][2];
+    cube.right[0][0] = cube.back[0][0]; cube.right[0][1] = cube.back[0][1]; cube.right[0][2] = cube.back[0][2];
+    cube.back[0][0] = cube.left[0][0]; cube.back[0][1] = cube.left[0][1]; cube.back[0][2] = cube.left[0][2];
+    cube.left[0][0] = temp0; cube.left[0][1] = temp1; cube.left[0][2] = temp2;
+}
+
+function girarUInvertido() {
+    var temp0 = cube.front[0][0];
+    var temp1 = cube.front[0][1];
+    var temp2 = cube.front[0][2];
+
+    cube.front[0][0] = cube.left[0][0]; cube.front[0][1] = cube.left[0][1]; cube.front[0][2] = cube.left[0][2];
+    cube.left[0][0] = cube.back[0][0]; cube.left[0][1] = cube.back[0][1]; cube.left[0][2] = cube.back[0][2];
+    cube.back[0][0] = cube.right[0][0]; cube.back[0][1] = cube.right[0][1]; cube.back[0][2] = cube.right[0][2];
+    cube.right[0][0] = temp0; cube.right[0][1] = temp1; cube.right[0][2] = temp2;
+}
+
+function girarD() {
+    var temp0 = cube.front[2][0];
+    var temp1 = cube.front[2][1];
+    var temp2 = cube.front[2][2];
+
+    cube.front[2][0] = cube.left[2][0]; cube.front[2][1] = cube.left[2][1]; cube.front[2][2] = cube.left[2][2];
+    cube.left[2][0] = cube.back[2][0]; cube.left[2][1] = cube.back[2][1]; cube.left[2][2] = cube.back[2][2];
+    cube.back[2][0] = cube.right[2][0]; cube.back[2][1] = cube.right[2][1]; cube.back[2][2] = cube.right[2][2];
+    cube.right[2][0] = temp0; cube.right[2][1] = temp1; cube.right[2][2] = temp2;
+}
+
+function girarDInvertido() {
+    var temp0 = cube.front[2][0];
+    var temp1 = cube.front[2][1];
+    var temp2 = cube.front[2][2];
+
+    cube.front[2][0] = cube.right[2][0]; cube.front[2][1] = cube.right[2][1]; cube.front[2][2] = cube.right[2][2];
+    cube.right[2][0] = cube.back[2][0]; cube.right[2][1] = cube.back[2][1]; cube.right[2][2] = cube.back[2][2];
+    cube.back[2][0] = cube.left[2][0]; cube.back[2][1] = cube.left[2][1]; cube.back[2][2] = cube.left[2][2];
+    cube.left[2][0] = temp0; cube.left[2][1] = temp1; cube.left[2][2] = temp2;
+}
+
+function girarB() {
+    var temp0 = cube.up[0][0];
+    var temp1 = cube.up[0][1];
+    var temp2 = cube.up[0][2];
+
+    cube.up[0][0] = cube.right[0][2]; cube.up[0][1] = cube.right[1][2]; cube.up[0][2] = cube.right[2][2];
+    cube.right[0][2] = cube.down[2][2]; cube.right[1][2] = cube.down[2][1]; cube.right[2][2] = cube.down[2][0];
+    cube.down[2][2] = cube.left[2][0]; cube.down[2][1] = cube.left[1][0]; cube.down[2][0] = cube.left[0][0];
+    cube.left[2][0] = temp0; cube.left[1][0] = temp1; cube.left[0][0] = temp2;
+}
+
+function girarBInvertido() {
+    var temp0 = cube.up[0][0];
+    var temp1 = cube.up[0][1];
+    var temp2 = cube.up[0][2];
+
+    cube.up[0][0] = cube.left[2][0]; cube.up[0][1] = cube.left[1][0]; cube.up[0][2] = cube.left[0][0];
+    cube.left[2][0] = cube.down[2][2]; cube.left[1][0] = cube.down[2][1]; cube.left[0][0] = cube.down[2][0];
+    cube.down[2][2] = cube.right[0][2]; cube.down[2][1] = cube.right[1][2]; cube.down[2][0] = cube.right[2][2];
+    cube.right[0][2] = temp0; cube.right[1][2] = temp1; cube.right[2][2] = temp2;
+}
+
 function jogo() {
     desenhar();
-    var movimento = leia.keyInSelect(["F", "F'", "R", "R'", "L", "L'"])
+    var movimento = leia.keyInSelect(["F", "F'", "R", "R'", "L", "L'", "U", "U'", "D", "D'", "B", "B'"]);
     if (movimento === 0) {
         girarF();
         jogo();
@@ -146,6 +212,30 @@ function jogo() {
     }
     else if (movimento === 5) {
         girarLInvertido();
+        jogo();
+    }
+    else if (movimento === 6) {
+        girarU();
+        jogo();
+    }
+    else if (movimento === 7) {
+        girarUInvertido();
+        jogo();
+    }
+    else if (movimento === 8) {
+        girarD();
+        jogo();
+    }
+    else if (movimento === 9) {
+        girarDInvertido();
+        jogo();
+    }
+    else if (movimento === 10) {
+        girarB();
+        jogo();
+    }
+    else if (movimento === 11) {
+        girarBInvertido();
         jogo();
     }
 }
