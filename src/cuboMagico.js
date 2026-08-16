@@ -81,7 +81,7 @@ function girarR() {
     var temp0 = cube.up[2][2];
     var temp1 = cube.up[1][2];
     var temp2 = cube.up[0][2];
-    
+
     cube.up[2][2] = cube.front[2][2]; cube.up[1][2] = cube.front[1][2]; cube.up[0][2] = cube.front[0][2];
     cube.front[0][2] = cube.down[0][2]; cube.front[1][2] = cube.down[1][2]; cube.front[2][2] = cube.down[2][2];
     cube.down[0][2] = cube.back[2][0]; cube.down[1][2] = cube.back[1][0]; cube.down[2][2] = cube.back[0][0];
@@ -92,16 +92,38 @@ function girarRInvertido() {
     var temp0 = cube.up[2][2];
     var temp1 = cube.up[1][2];
     var temp2 = cube.up[0][2];
-    
+
     cube.up[2][2] = cube.back[0][0]; cube.up[1][2] = cube.back[1][0]; cube.up[0][2] = cube.back[2][0];
     cube.back[0][0] = cube.down[2][2]; cube.back[1][0] = cube.down[1][2]; cube.back[2][0] = cube.down[0][2];
     cube.down[0][2] = cube.front[0][2]; cube.down[1][2] = cube.front[1][2]; cube.down[2][2] = cube.front[2][2];
     cube.front[0][2] = temp2; cube.front[1][2] = temp1; cube.front[2][2] = temp0;
 }
 
+function girarL() {
+    var temp0 = cube.up[0][0];
+    var temp1 = cube.up[1][0];
+    var temp2 = cube.up[2][0];
+
+    cube.up[0][0] = cube.back[2][2]; cube.up[1][0] = cube.back[1][2]; cube.up[2][0] = cube.back[0][2];
+    cube.back[0][2] = cube.down[2][0]; cube.back[1][2] = cube.down[1][0]; cube.back[2][2] = cube.down[0][0];
+    cube.down[0][0] = cube.front[0][0]; cube.down[1][0] = cube.front[1][0]; cube.down[2][0] = cube.front[2][0];
+    cube.front[0][0] = temp0; cube.front[1][0] = temp1; cube.front[2][0] = temp2;
+}
+
+function girarLInvertido() {
+    var temp0 = cube.up[0][0];
+    var temp1 = cube.up[1][0];
+    var temp2 = cube.up[2][0];
+
+    cube.up[0][0] = cube.front[0][0]; cube.up[1][0] = cube.front[1][0]; cube.up[2][0] = cube.front[2][0];
+    cube.front[0][0] = cube.down[0][0]; cube.front[1][0] = cube.down[1][0]; cube.front[2][0] = cube.down[2][0];
+    cube.down[0][0] = cube.back[2][2]; cube.down[1][0] = cube.back[1][2]; cube.down[2][0] = cube.back[0][2];
+    cube.back[0][2] = temp2; cube.back[1][2] = temp1; cube.back[2][2] = temp0;
+}
+
 function jogo() {
     desenhar();
-    var movimento = leia.keyInSelect(["F", "F'", "R", "R'"])
+    var movimento = leia.keyInSelect(["F", "F'", "R", "R'", "L", "L'"])
     if (movimento === 0) {
         girarF();
         jogo();
@@ -110,12 +132,20 @@ function jogo() {
         girarFInvertido();
         jogo();
     }
-    else if(movimento === 2) {
+    else if (movimento === 2) {
         girarR();
         jogo();
     }
-    else if(movimento === 3) {
+    else if (movimento === 3) {
         girarRInvertido();
+        jogo();
+    }
+    else if (movimento === 4) {
+        girarL();
+        jogo();
+    }
+    else if (movimento === 5) {
+        girarLInvertido();
         jogo();
     }
 }
